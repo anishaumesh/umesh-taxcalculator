@@ -74,8 +74,8 @@ HTML_TEMPLATE = '''
                     <td>{{ percentage }}%</td>
                 </tr>
                 <tr>
-                    <th>Income after Taxes/th>
-                    <td>{{ income - final_tax }}%</td>
+                    <th>Income after Taxes</th>
+                    <td>{{ income - final_tax }}</td>
                 </tr>
                 {% if marginal_relief_applied %}
                     <tr>
