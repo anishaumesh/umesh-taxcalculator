@@ -7,6 +7,10 @@ HTML_TEMPLATE = '''
 <html>
 <head>
     <title>Tax Calculator</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        p { font-size: 16px; }
+    </style>
 </head>
 <body>
     <h2>Enter Income</h2>
@@ -15,15 +19,15 @@ HTML_TEMPLATE = '''
         <button type="submit">Calculate</button>
     </form>
     {% if tax is not none %}
-        <h3>Tax: {{ tax }}</h3>
-        <h3>Surcharge: {{ surcharge }}</h3>
-        <h3>Cess: {{ cess }}</h3>
-        <h3>Total Tax: {{ final_tax }}</h3>
-        <h3>Marginal Relief Applied: {{ marginal_relief_applied }}</h3>
+        <p>Tax: {{ tax }}</p>
+        <p>Surcharge: {{ surcharge }}</p>
+        <p>Cess: {{ cess }}</p>
+        <p>Total Tax: {{ final_tax }}</p>
+        <p>Marginal Relief Applied: {{ marginal_relief_applied }}</p>
         {% if marginal_relief_applied %}
-            <h3>Note: Marginal relief is applied on this gross salary</h3>
+            <p>Note: Marginal relief is applied on this gross salary</p>
         {% endif %}
-        <h3>Total tax paid as percentage of gross income: {{ (final_tax / income) * 100 }}%</h3>
+        <p>Total tax paid as percentage of gross income: {{ (final_tax / income) * 100 }}%</p>
     {% endif %}
 </body>
 </html>
