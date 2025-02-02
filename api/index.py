@@ -8,28 +8,77 @@ HTML_TEMPLATE = '''
 <head>
     <title>Tax Calculator</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        p { font-size: 16px; }
+        body { 
+            font-family: Arial, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            width: 50%;
+        }
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
-    <h2>Enter Income</h2>
-    <form method="post">
-        <input type="number" name="income" required>
-        <button type="submit">Calculate</button>
-    </form>
-    {% if tax is not none %}
-        <p>Gross Income: {{ income }}</p>
-        <p>Taxable Income: {{ income - 75000 }}</p>
-        <p>Tax: {{ tax }}</p>
-        <p>Surcharge: {{ surcharge }}</p>
-        <p>Cess: {{ cess }}</p>
-        <h3>Total Tax: {{ final_tax }}</h3>
-        {% if marginal_relief_applied %}
-            <p>Note: Marginal relief is applied on this gross salary</p>
+    <div class="container">
+        <h2>Enter Income</h2>
+        <form method="post">
+            <input type="number" name="income" required>
+            <button type="submit">Calculate</button>
+        </form>
+        {% if tax is not none %}
+            <table>
+                <tr>
+                    <th>Gross Income</th>
+                    <td>{{ income }}</td>
+                </tr>
+                <tr>
+                    <th>Taxable Income</th>
+                    <td>{{ income - 75000 }}</td>
+                </tr>
+                <tr>
+                    <th>Tax</th>
+                    <td>{{ tax }}</td>
+                </tr>
+                <tr>
+                    <th>Surcharge</th>
+                    <td>{{ surcharge }}</td>
+                </tr>
+                <tr>
+                    <th>Cess</th>
+                    <td>{{ cess }}</td>
+                </tr>
+                <tr>
+                    <th>Total Tax</th>
+                    <td>{{ final_tax }}</td>
+                </tr>
+                {% if marginal_relief_applied %}
+                    <tr>
+                        <td colspan="2">
+                            <p>Note: Marginal relief is applied on this gross salary</p>
+                        </td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <th>Total tax paid as percentage of gross income</th>
+                    <td>{{ percentage }}%</td>
+                </tr>
+            </table>
         {% endif %}
-        <p>Total tax paid as percentage of gross income: {{ percentage }}%</p>
-    {% endif %}
+    </div>
 </body>
 </html>
 '''
