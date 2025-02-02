@@ -28,7 +28,7 @@ HTML_TEMPLATE = '''
         {% if marginal_relief_applied %}
             <p>Note: Marginal relief is applied on this gross salary</p>
         {% endif %}
-        <p>Total tax paid as percentage of gross income: {{ (final_tax / income) * 100 | round(2) }}%</p>
+        <p>Total tax paid as percentage of gross income: {{ percentage }}%</p>
     {% endif %}
 </body>
 </html>
@@ -89,10 +89,11 @@ def calculate_tax(income):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     tax, surcharge, cess, final_tax, marginal_relief_applied = None, None, None, None, None
-    income = None
+    income, percentage = None, None
     if request.method == 'POST':
         income = float(request.form.get('income', 0))
         tax, surcharge, cess, final_tax, marginal_relief_applied = calculate_tax(income)
+        percentage = round((final_tax / income) * 100, 2)
     return render_template_string(HTML_TEMPLATE, tax=tax, surcharge=surcharge, cess=cess, final_tax=final_tax, marginal_relief_applied=marginal_relief_applied, income=income)
 
 if __name__ == "__main__":
