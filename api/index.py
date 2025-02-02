@@ -15,10 +15,12 @@ HTML_TEMPLATE = '''
             align-items: center; 
             height: 100vh; 
             margin: 0;
+            padding: 0;  /* Added padding reset to avoid unexpected gaps */
         }
         .container {
             text-align: center;
             width: 50%;
+            margin-top: -10%;  /* Reduces the top margin */
         }
         table {
             margin-top: 20px;
