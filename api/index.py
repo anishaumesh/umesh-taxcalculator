@@ -19,6 +19,7 @@ HTML_TEMPLATE = '''
         <button type="submit">Calculate</button>
     </form>
     {% if tax is not none %}
+        <p>Taxable Income: {{ income - 75000 }}</p>
         <p>Tax: {{ tax }}</p>
         <p>Surcharge: {{ surcharge }}</p>
         <p>Cess: {{ cess }}</p>
