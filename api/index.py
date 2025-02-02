@@ -53,10 +53,12 @@ HTML_TEMPLATE = '''
                     <th>Tax</th>
                     <td>{{ tax }}</td>
                 </tr>
-                <tr>
-                    <th>Surcharge</th>
-                    <td>{{ surcharge }}</td>
-                </tr>
+                {% if surcharge > 0 %}
+                    <tr>
+                        <th>Surcharge</th>
+                        <td>{{ surcharge }}</td>
+                    </tr>
+                {% endif %}
                 <tr>
                     <th>Cess</th>
                     <td>{{ cess }}</td>
