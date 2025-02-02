@@ -22,12 +22,12 @@ HTML_TEMPLATE = '''
         <p>Tax: {{ tax }}</p>
         <p>Surcharge: {{ surcharge }}</p>
         <p>Cess: {{ cess }}</p>
-        <p>Total Tax: {{ final_tax }}</p>
+        <h3>Total Tax: {{ final_tax }}</h3>
         <p>Marginal Relief Applied: {{ marginal_relief_applied }}</p>
         {% if marginal_relief_applied %}
             <p>Note: Marginal relief is applied on this gross salary</p>
         {% endif %}
-        <p>Total tax paid as percentage of gross income: {{ (final_tax / income) * 100 }}%</p>
+        <p>Total tax paid as percentage of gross income: {{ (final_tax / income) * 100 | round(2) }}%</p>
     {% endif %}
 </body>
 </html>
