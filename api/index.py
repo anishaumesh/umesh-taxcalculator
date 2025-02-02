@@ -62,12 +62,20 @@ HTML_TEMPLATE = '''
                     </tr>
                 {% endif %}
                 <tr>
-                    <th>Cess</th>
+                    <th>Health & Education Cess (4%)</th>
                     <td>{{ cess }}</td>
                 </tr>
                 <tr>
                     <th>Total Tax</th>
                     <td>{{ final_tax }}</td>
+                </tr>
+                <tr>
+                    <th>Total tax paid as percentage of gross income</th>
+                    <td>{{ percentage }}%</td>
+                </tr>
+                <tr>
+                    <th>Income after Taxes/th>
+                    <td>{{ income - final_tax }}%</td>
                 </tr>
                 {% if marginal_relief_applied %}
                     <tr>
@@ -76,10 +84,6 @@ HTML_TEMPLATE = '''
                         </td>
                     </tr>
                 {% endif %}
-                <tr>
-                    <th>Total tax paid as percentage of gross income</th>
-                    <td>{{ percentage }}%</td>
-                </tr>
             </table>
         {% endif %}
     </div>
