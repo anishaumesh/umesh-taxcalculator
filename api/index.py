@@ -136,6 +136,18 @@ def calculate_tax(income):
         surcharge = tax * 0.1
         cess = (tax + surcharge) * 0.04
         return tax, surcharge, cess, (tax + surcharge + cess), False
+    
+    if income <= 20075000:
+        tax = 300000 + (adjusted_income - 2400000) * 0.3
+        surcharge = tax * 0.15
+        cess = (tax + surcharge) * 0.04
+        return tax, surcharge, cess, (tax + surcharge + cess), False
+
+    if income >= 20075000:
+        tax = 300000 + (adjusted_income - 2400000) * 0.3
+        surcharge = tax * 0.25
+        cess = (tax + surcharge) * 0.04
+        return tax, surcharge, cess, (tax + surcharge + cess), False
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
