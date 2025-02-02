@@ -49,7 +49,7 @@ HTML_TEMPLATE = '''
                 </tr>
                 <tr>
                     <th>Taxable Income</th>
-                    <td>{{ income > 1275000 ? income - 75000 : 0 }}</td>
+                    <td>{{ (income - 75000) if income > 1275000 else 0 }}</td>
                 </tr>
                 <tr>
                     <th>Tax</th>
