@@ -94,7 +94,7 @@ def index():
         income = float(request.form.get('income', 0))
         tax, surcharge, cess, final_tax, marginal_relief_applied = calculate_tax(income)
         percentage = round((final_tax / income) * 100, 2)
-    return render_template_string(HTML_TEMPLATE, tax=tax, surcharge=surcharge, cess=cess, final_tax=final_tax, marginal_relief_applied=marginal_relief_applied, income=income)
+    return render_template_string(HTML_TEMPLATE, tax=tax, surcharge=surcharge, cess=cess, final_tax=final_tax, marginal_relief_applied=marginal_relief_applied, income=income, percentage=percentage)
 
 if __name__ == "__main__":
     app.run(debug=True)
