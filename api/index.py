@@ -49,7 +49,7 @@ HTML_TEMPLATE = '''
                 </tr>
                 <tr>
                     <th>Taxable Income</th>
-                    <td>{{ income - 75000 }}</td>
+                    <td>{{ income > 1275000 ? income - 75000 : 0 }}</td>
                 </tr>
                 <tr>
                     <th>Tax</th>
@@ -73,18 +73,11 @@ HTML_TEMPLATE = '''
                     <th>Total tax paid as percentage of gross income</th>
                     <td>{{ percentage }}%</td>
                 </tr>
-                <tr>
-                    <th>Income after Taxes</th>
-                    <td>{{ income - final_tax }}</td>
-                </tr>
-                {% if marginal_relief_applied %}
-                    <tr>
-                        <td colspan="2">
-                            <p>Note: Marginal relief is applied on this gross salary</p>
-                        </td>
-                    </tr>
-                {% endif %}
             </table>
+            {% if income > 1275000 %}
+                <p>Note: Marginal relief is applied on this gross salary</p>
+            {% endif %}
+                <p> Your income after taxes is {{ income - final_tax }} </p>
         {% endif %}
     </div>
 </body>
