@@ -19,12 +19,12 @@ HTML_TEMPLATE = '''
         <button type="submit">Calculate</button>
     </form>
     {% if tax is not none %}
+        <p>Gross Income: {{ income }}</p>
         <p>Taxable Income: {{ income - 75000 }}</p>
         <p>Tax: {{ tax }}</p>
         <p>Surcharge: {{ surcharge }}</p>
         <p>Cess: {{ cess }}</p>
         <h3>Total Tax: {{ final_tax }}</h3>
-        <p>Marginal Relief Applied: {{ marginal_relief_applied }}</p>
         {% if marginal_relief_applied %}
             <p>Note: Marginal relief is applied on this gross salary</p>
         {% endif %}
@@ -37,10 +37,7 @@ HTML_TEMPLATE = '''
 def calculate_tax(income):
     standard_deduction = 75000
     
-    marginal_relief_a = 1344118
-    marginal_relief_b = 1825000
-    marginal_relief_c = 2341667
-    marginal_relief_d = 2904286
+    marginal_relief_a = 1345588
     marginal_relief_surcharge = 5189140
     
     cess = 0
@@ -53,7 +50,7 @@ def calculate_tax(income):
         return 0, 0, 0, 0, False
 
     if income <= marginal_relief_a:
-        tax = adjusted_income - 1200000
+        tax = min((adjusted_income - 1200000), 600000 + (adjusted_income - 1200000) * 0.15)
         cess = tax * 0.04
         return tax, 0, cess, tax + cess, True
         
@@ -61,31 +58,16 @@ def calculate_tax(income):
         tax = 60000 + (adjusted_income - 1200000) * 0.15
         cess = tax * 0.04
         return tax, 0, cess, tax + cess, False
-       
-    if income <= marginal_relief_b:
-        tax = 120000 + adjusted_income - 1600000
-        cess = tax * 0.04
-        return tax, 0, cess, tax + cess, True
         
     if income <= 2075000:
         tax = 120000 + (adjusted_income - 1600000) * 0.2
         cess = tax * 0.04
         return tax, 0, cess, tax + cess, False
-        
-    if income <= marginal_relief_c:
-        tax = 200000 + adjusted_income - 2000000
-        cess = tax * 0.04
-        return tax, 0, cess, tax + cess, True
     
     if income <= 2475000:
         tax = 200000 + (adjusted_income - 2000000) * 0.25
         cess = tax * 0.04
         return tax, 0, cess, tax + cess, False
-        
-    if income <= marginal_relief_d:
-        tax = 300000 + (adjusted_income - 2400000)
-        cess = tax * 0.04
-        return tax, 0, cess, tax + cess, True
         
     if income <= 5075000:
         tax = 300000 + (adjusted_income - 2400000) * 0.3
