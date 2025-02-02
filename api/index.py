@@ -74,7 +74,7 @@ HTML_TEMPLATE = '''
                     <td>{{ percentage }}%</td>
                 </tr>
             </table>
-            {% if income > 1275000 %}
+            {% if marginal_relief_applied %}
                 <p>Note: Marginal relief is applied on this gross salary</p>
             {% endif %}
                 <p> Your income after taxes is {{ income - final_tax }} </p>
